@@ -2,6 +2,7 @@
 #include "romb.h"
 #include "triangle.h"
 #include "square.h"
+#include "ellipse.h"
 
 PaintScene::PaintScene(QObject *parent) : QGraphicsScene(parent)
 {
@@ -28,7 +29,7 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     /* Устанавливаем конечную координату положения мыши
      * в текущую отрисовываемую фигуру
      * */
-    if (isDraw)
+    if (m_currentAction == Paint)
     {
         tempFigure->setEndPoint(event->scenePos());
     }
@@ -44,10 +45,11 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
  * */
 void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (isDraw)
+
+    if (m_currentAction == Paint)
     {
         this->m_typeFigure = NONE;
-        isDraw = false;
+        m_currentAction = Move;
         return;
     }
     switch (m_typeFigure) {
@@ -58,18 +60,25 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         Square *item = new Square(event->scenePos());
         item->setPos(event->pos());
         tempFigure = item;
-        isDraw = true;
+        m_currentAction = Paint;
         break;
     }
     case RombType: {
         Romb *item = new Romb(event->scenePos());
         item->setPos(event->pos());
         tempFigure = item;
-        isDraw = true;
+        m_currentAction = Paint;
         break;
     }
     case TriangleType: {
         Triangle *item = new Triangle(event->scenePos());
+        item->setPos(event->pos());
+        tempFigure = item;
+        m_currentAction = Paint;
+        break;
+    }
+    case EllipseType: {
+        Ellipse *item = new Ellipse(event->scenePos());
         item->setPos(event->pos());
         tempFigure = item;
         isDraw = true;
@@ -79,6 +88,6 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         return;
     }
     }
-    qDebug() << "ssssss";
-     this->addItem(tempFigure);
+
+    this->addItem(tempFigure);
 }

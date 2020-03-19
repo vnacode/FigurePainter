@@ -21,11 +21,18 @@ public:
     void setTypeFigure(const int type);     // Установка текущего типа
 
     // Перечисление типов используемых фигур
+
+    enum Actions{
+        Paint,
+        Move
+    };
+
     enum FigureTypes {
         NONE,
         SquareType,
         RombType,
-        TriangleType
+        TriangleType,
+        EllipseType
     };
 
 signals:
@@ -39,6 +46,7 @@ private:
     Figure *tempFigure;
     bool isDraw = false;
     int m_typeFigure;   // текущий тип фигуры
+    int m_currentAction;
 
 private:
     // Для рисования используем события мыши

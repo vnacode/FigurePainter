@@ -59,6 +59,18 @@ void Figure::setEndPoint(const QPointF point)
     emit pointChanged();
 }
 
+void Figure::setPenColor(const QColor &color)
+{
+    m_penColor = color;
+    emit colorChanged();
+}
+
+void Figure::setBrushColor(const QColor &color)
+{
+    m_BrushColor = color;
+    emit colorChanged();
+}
+
 QPointF Figure::startPoint() const
 {
     return m_startPoint;
@@ -67,4 +79,14 @@ QPointF Figure::startPoint() const
 QPointF Figure::endPoint() const
 {
     return m_endPoint;
+}
+
+QColor Figure::penColor() const
+{
+    return  m_penColor;
+}
+
+QColor Figure::brushColor() const
+{
+    return  m_BrushColor;
 }

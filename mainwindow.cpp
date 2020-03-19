@@ -7,11 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    scene = new PaintScene();   // Инициализируем графическую сцену
+    scene = new PaintScene();
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing);                // Устанавливаем сглаживание
-    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   // Отключаем скроллбар по вертикали
-    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); // Отключаем скроллбар по горизонтали
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     timer = new QTimer();       // Инициализируем таймер
     connect(timer, &QTimer::timeout, this, &MainWindow::slotTimer);
@@ -55,3 +55,10 @@ void MainWindow::on_pushButton_3_clicked()
 {
     scene->setTypeFigure(PaintScene::TriangleType);
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    scene->setTypeFigure(PaintScene::EllipseType);
+}
+
+

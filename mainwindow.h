@@ -37,6 +37,7 @@ private slots:
     void on_pushButton_clicked();       // Включаем отрисовку Ромба
     void on_pushButton_2_clicked();     // Включаем отрисовку Квадрата
     void on_pushButton_3_clicked();     // Включаем отрисовку Треугольника
+    void on_pushButton_4_clicked();
 };
 
 #endif // MAINWINDOW_H

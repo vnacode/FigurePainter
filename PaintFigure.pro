@@ -9,6 +9,7 @@ TEMPLATE = app
 INCLUDEPATH += figures
 
 SOURCES += main.cpp\
+    figures/ellipse.cpp \
         mainwindow.cpp \
     paintscene.cpp \
     figures/triangle.cpp \
@@ -17,6 +18,7 @@ SOURCES += main.cpp\
     figures/figure.cpp
 
 HEADERS  += mainwindow.h \
+    figures/ellipse.h \
     figures/triangle.h \
     figures/square.h \
     figures/romb.h \

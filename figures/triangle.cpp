@@ -15,7 +15,7 @@ Triangle::~Triangle()
 // Реализуем метод отрисовки
 void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(QPen(Qt::black, 2));
+    painter->setPen(QPen(penColor(), 2));
 
     QPolygonF polygon;
 
