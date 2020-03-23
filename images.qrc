@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/ellipse.png</file>
+        <file>images/rectangle.png</file>
+        <file>images/cursor.png</file>
+        <file>images/minus.png</file>
+        <file>images/triangle.png</file>
+    </qresource>
+</RCC>

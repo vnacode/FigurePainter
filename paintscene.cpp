@@ -14,44 +14,23 @@ PaintScene::~PaintScene()
 
 }
 
-int PaintScene::typeFigure() const
-{
-    return m_typeFigure;
-}
-
-void PaintScene::setTypeFigure(const int type)
-{
-    m_typeFigure = type;
-}
-
 void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    /* Устанавливаем конечную координату положения мыши
-     * в текущую отрисовываемую фигуру
-     * */
+
     if (m_currentAction == Paint)
     {
         tempFigure->setEndPoint(event->scenePos());
     }
-    /* Обновляем содержимое сцены,
-     * необходимо для устранения артефактов при отрисовке фигур
-     * */
+    if (tempFigure != Q_NULLPTR &&  m_currentAction == Move && event->buttons() == Qt::LeftButton)
+    {
+        tempFigure->setPos(event->scenePos());
+    }
+
     this->update(QRectF(0,0,this->width(), this->height()));
 }
 
-/* Как только нажали кнопку мыши, создаём фигуру одного из трёх типов
- * и помещаем её на сцену, сохранив указатель на неё в переменной
- * tempFigure
- * */
-void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
 {
-
-    if (m_currentAction == Paint)
-    {
-        this->m_typeFigure = NONE;
-        m_currentAction = Move;
-        return;
-    }
     switch (m_typeFigure) {
     case NONE: {
         return;
@@ -81,7 +60,7 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         Ellipse *item = new Ellipse(event->scenePos());
         item->setPos(event->pos());
         tempFigure = item;
-        isDraw = true;
+        m_currentAction = Paint;
         break;
     }
     default:{
@@ -90,4 +69,23 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     }
 
     this->addItem(tempFigure);
+}
+
+
+void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_currentAction == Paint)
+    {
+      //  this->m_typeFigure = NONE;
+        m_currentAction = NO_ACTION;
+        return;
+    }
+    if (m_currentAction == Move)
+    {
+      //  this->m_typeFigure = NONE;
+        tempFigure =  static_cast<Figure*>(itemAt(event->scenePos(),QTransform()));
+        return;
+    }
+
+    drawFigure(event);
 }

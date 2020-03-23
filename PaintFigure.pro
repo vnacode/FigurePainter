@@ -26,3 +26,6 @@ HEADERS  += mainwindow.h \
     figures/figure.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    images.qrc

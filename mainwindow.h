@@ -31,6 +31,9 @@ private:
      * */
     void resizeEvent(QResizeEvent * event);
 
+    QMap<int,QPixmap*> m_figuresIcons;
+    void changeCurrentIcon(const int icon);
+
 private slots:
     // Таймер для изменения размеров сцены при изменении размеров Окна приложения
     void slotTimer();
@@ -38,6 +41,7 @@ private slots:
     void on_pushButton_2_clicked();     // Включаем отрисовку Квадрата
     void on_pushButton_3_clicked();     // Включаем отрисовку Треугольника
     void on_pushButton_4_clicked();
+    void on_pushButton_6_clicked();;
 };
 
 #endif // MAINWINDOW_H
