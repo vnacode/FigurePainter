@@ -41,21 +41,24 @@ QRectF Figure::boundingRect() const
 void Figure::updateRomb()
 {
     // Вызываем обновление области, в которой лежит фигура
-    this->update((endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x()) - 5,
-                 (endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y()) - 5,
-                 qAbs(endPoint().x() - startPoint().x()) + 10,
-                 qAbs(endPoint().y() - startPoint().y()) + 10);
+//    this->update((endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x()) - 5,
+//                 (endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y()) - 5,
+//                 qAbs(endPoint().x() - startPoint().x()) + 10,
+//                 qAbs(endPoint().y() - startPoint().y()) + 10);
+
 }
+
+
 
 void Figure::setStartPoint(const QPointF point)
 {
-    m_startPoint = mapFromScene(point);
+    m_startPoint = point;
     emit pointChanged();
 }
 
 void Figure::setEndPoint(const QPointF point)
 {
-    m_endPoint = mapFromScene(point);
+    m_endPoint = point;
     emit pointChanged();
 }
 
@@ -70,6 +73,7 @@ void Figure::setBrushColor(const QColor &color)
     m_BrushColor = color;
     emit colorChanged();
 }
+
 
 QPointF Figure::startPoint() const
 {
@@ -89,4 +93,9 @@ QColor Figure::penColor() const
 QColor Figure::brushColor() const
 {
     return  m_BrushColor;
+}
+
+QPointF Figure::center() const
+{
+    return boundingRect().center();
 }

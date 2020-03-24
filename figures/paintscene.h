@@ -43,16 +43,13 @@ public:
     };
 
 signals:
-    void typeFigureChanged();               // Сигнал об изменении типа текущей фигуры
+    void typeFigureChanged();
     void currentActionChanged();
 
 private:
-    /* Объект для временного хранения рисуемой фигуры
-     * Является объектом базового класса для всех трёх типов фигур в примере
-     * */
-   // QGraphicsItemGroup *m_group;
+
     Figure *tempFigure;
-    int m_typeFigure;   // текущий тип фигуры
+    int m_typeFigure;
     int m_currentAction;
 
 private:

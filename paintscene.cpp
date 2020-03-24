@@ -3,6 +3,7 @@
 #include "triangle.h"
 #include "square.h"
 #include "ellipse.h"
+#include <line.h>
 
 PaintScene::PaintScene(QObject *parent) : QGraphicsScene(parent)
 {
@@ -23,7 +24,8 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     }
     if (tempFigure != Q_NULLPTR &&  m_currentAction == Move && event->buttons() == Qt::LeftButton)
     {
-        tempFigure->setPos(event->scenePos());
+        tempFigure->setPos(tempFigure->scenePos() - (event->lastScenePos() - event->scenePos()));
+        qDebug() << tempFigure->center() << event->scenePos() << event->pos();
     }
 
     this->update(QRectF(0,0,this->width(), this->height()));
@@ -63,6 +65,13 @@ void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
         m_currentAction = Paint;
         break;
     }
+    case LineType: {
+        Line *item = new Line(event->scenePos());
+        item->setPos(event->pos());
+        tempFigure = item;
+        m_currentAction = Paint;
+        break;
+    }
     default:{
         return;
     }
@@ -76,13 +85,11 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (m_currentAction == Paint)
     {
-      //  this->m_typeFigure = NONE;
         m_currentAction = NO_ACTION;
         return;
     }
     if (m_currentAction == Move)
     {
-      //  this->m_typeFigure = NONE;
         tempFigure =  static_cast<Figure*>(itemAt(event->scenePos(),QTransform()));
         return;
     }

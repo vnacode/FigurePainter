@@ -11,6 +11,7 @@ namespace Ui {
 class MainWindow;
 }
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -41,7 +42,8 @@ private slots:
     void on_pushButton_2_clicked();     // Включаем отрисовку Квадрата
     void on_pushButton_3_clicked();     // Включаем отрисовку Треугольника
     void on_pushButton_4_clicked();
-    void on_pushButton_6_clicked();;
+    void on_pushButton_5_clicked();
+    void on_pushButton_6_clicked();
 };
 
 #endif // MAINWINDOW_H

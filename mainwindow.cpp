@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->resize(1200,800);
+    this->resize(800,600);
     scene = new PaintScene();
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
@@ -18,14 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_figuresIcons[PaintScene::NONE] = new QPixmap(":/images/cursor.png");
     m_figuresIcons[PaintScene::SquareType] = new QPixmap(":/images/rectangle.png");
-    m_figuresIcons[PaintScene::RombType] = new QPixmap(":/images/ellipse.png");
+    m_figuresIcons[PaintScene::RombType] = new QPixmap(":/images/romb.png");
     m_figuresIcons[PaintScene::TriangleType] = new QPixmap(":/images/triangle.png");
     m_figuresIcons[PaintScene::EllipseType] = new QPixmap(":/images/ellipse.png");
     m_figuresIcons[PaintScene::LineType] = new QPixmap(":/images/minus.png");
 
     ui->currenIcon->setScaledContents(true);
     ui->currenIcon->setFixedSize(50,50);
-
+    ui->widget_2->layout()->setAlignment(ui->currenIcon,Qt::AlignHCenter | Qt::AlignTop);
+  //   ui->widget_2->layout()->setAlignment(ui->label,Qt::AlignHCenter | Qt::AlignTop);
     timer = new QTimer();       // Инициализируем таймер
     connect(timer, &QTimer::timeout, this, &MainWindow::slotTimer);
     timer->start(100);          // Запускаем таймер
@@ -81,6 +82,12 @@ void MainWindow::on_pushButton_4_clicked()
 {
     scene->setTypeFigure(PaintScene::EllipseType);
     changeCurrentIcon(PaintScene::EllipseType);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    scene->setTypeFigure(PaintScene::LineType);
+    changeCurrentIcon(PaintScene::LineType);
 }
 
 void MainWindow::on_pushButton_6_clicked()

@@ -15,7 +15,8 @@ SOURCES += main.cpp\
     figures/triangle.cpp \
     figures/square.cpp \
     figures/romb.cpp \
-    figures/figure.cpp
+    figures/figure.cpp \
+    figures/line.cpp
 
 HEADERS  += mainwindow.h \
     figures/ellipse.h \
@@ -23,7 +24,8 @@ HEADERS  += mainwindow.h \
     figures/square.h \
     figures/romb.h \
     figures/paintscene.h \
-    figures/figure.h
+    figures/figure.h \
+    figures/line.h
 
 FORMS    += mainwindow.ui
 
