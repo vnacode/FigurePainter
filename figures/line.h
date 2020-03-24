@@ -13,7 +13,6 @@ class Line : public Figure
 
 public:
     explicit Line(QPointF point, QObject *parent = 0);
-    ~Line();
 
 private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

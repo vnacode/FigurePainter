@@ -53,42 +53,8 @@
        <item>
         <widget class="QWidget" name="widget" native="true">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="images.qrc">
-              <normaloff>:/images/rectangle.png</normaloff>:/images/rectangle.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="images.qrc">
-              <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="rombButton">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -105,10 +71,16 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="triangleButton">
             <property name="minimumSize">
              <size>
-              <width>0</width>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
               <height>50</height>
              </size>
             </property>
@@ -121,8 +93,54 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="lineButton">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="images.qrc">
+              <normaloff>:/images/minus.png</normaloff>:/images/minus.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="squareButton">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="images.qrc">
+              <normaloff>:/images/rectangle.png</normaloff>:/images/rectangle.png</iconset>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
-           <widget class="QPushButton" name="pushButton_6">
+           <widget class="QPushButton" name="cursorButton">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -139,10 +157,16 @@
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="ellipseButton">
             <property name="minimumSize">
              <size>
-              <width>0</width>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
               <height>50</height>
              </size>
             </property>
@@ -152,6 +176,19 @@
             <property name="icon">
              <iconset resource="images.qrc">
               <normaloff>:/images/ellipse.png</normaloff>:/images/ellipse.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QPushButton" name="clearButton">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Очистить</string>
             </property>
            </widget>
           </item>

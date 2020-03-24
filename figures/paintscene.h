@@ -19,7 +19,6 @@ class PaintScene : public QGraphicsScene
 
 public:
     explicit PaintScene(QObject *parent = 0);
-    ~PaintScene();
 
     constexpr int typeFigure() const {return  m_typeFigure;}                  // Возвращение текщего типа
     constexpr void setTypeFigure(const int type) { m_typeFigure = type; m_currentAction = NO_ACTION; }     // Установка текущего типа

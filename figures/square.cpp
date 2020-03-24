@@ -7,16 +7,11 @@ Square::Square(QPointF point, QObject *parent) :
     Q_UNUSED(point)
 }
 
-Square::~Square()
-{
 
-}
-
-// Реализуем метод отрисовки
 void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(QPen(Qt::black, 2));
-
+    painter->setPen(pen());
+    painter->setBrush(brush());
     QRectF rect(endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x(),
                 endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y(),
                 qAbs(endPoint().x() - startPoint().x()),

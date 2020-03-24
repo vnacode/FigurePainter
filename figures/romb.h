@@ -14,7 +14,6 @@ class Romb : public Figure
 
 public:
     explicit Romb(QPointF point, QObject *parent = 0);
-    ~Romb();
 
 private:
     // Для Ромба реализуем только саму отрисовку

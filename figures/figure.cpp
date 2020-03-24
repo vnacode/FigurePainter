@@ -4,12 +4,8 @@
 Figure::Figure(QPointF point, QObject *parent) :
     QObject(parent), QGraphicsItem()
 {
-    // Устанавливаем стартовую координату для отрисовки фигуры
     this->setStartPoint(mapFromScene(point));
     this->setEndPoint(mapFromScene(point));
-    /* Подключаем сигнал изменения координат к слоту запуска обновления содержимого объекта
-     * Сигнал и слот присутствуют в базовом классе
-     * */
     connect(this, &Figure::pointChanged, this, &Figure::updateRomb);
 
     setAcceptHoverEvents(true);
@@ -20,18 +16,14 @@ Figure::Figure(QPointF point, QObject *parent) :
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges);
     setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
-}
 
-Figure::~Figure()
-{
+    setPen(QPen(QColor(0,0,230),2));
+    setBrush(QBrush(Qt::transparent));
 
 }
 
 QRectF Figure::boundingRect() const
 {
-    /* Возвращаем область, в которой лежит фигура.
-     * Обновляемая область зависит от стартовой точки отрисовки и от конечной точки
-     * */
     return QRectF((endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x()) - 5,
                   (endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y()) - 5,
                   qAbs(endPoint().x() - startPoint().x()) + 10,
@@ -40,14 +32,9 @@ QRectF Figure::boundingRect() const
 
 void Figure::updateRomb()
 {
-    // Вызываем обновление области, в которой лежит фигура
-//    this->update((endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x()) - 5,
-//                 (endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y()) - 5,
-//                 qAbs(endPoint().x() - startPoint().x()) + 10,
-//                 qAbs(endPoint().y() - startPoint().y()) + 10);
+    this->update(boundingRect());
 
 }
-
 
 
 void Figure::setStartPoint(const QPointF point)
@@ -62,15 +49,15 @@ void Figure::setEndPoint(const QPointF point)
     emit pointChanged();
 }
 
-void Figure::setPenColor(const QColor &color)
+void Figure::setPen(const QPen &pen)
 {
-    m_penColor = color;
+    m_pen = pen;
     emit colorChanged();
 }
 
-void Figure::setBrushColor(const QColor &color)
+void Figure::setBrush(const QBrush &brush)
 {
-    m_BrushColor = color;
+    m_Brush = brush;
     emit colorChanged();
 }
 
@@ -85,14 +72,14 @@ QPointF Figure::endPoint() const
     return m_endPoint;
 }
 
-QColor Figure::penColor() const
+QPen Figure::pen() const
 {
-    return  m_penColor;
+    return  m_pen;
 }
 
-QColor Figure::brushColor() const
+QBrush Figure::brush() const
 {
-    return  m_BrushColor;
+    return  m_Brush;
 }
 
 QPointF Figure::center() const

@@ -7,18 +7,11 @@ Triangle::Triangle(QPointF point, QObject *parent) :
     Q_UNUSED(point)
 }
 
-Triangle::~Triangle()
-{
-
-}
-
-// Реализуем метод отрисовки
 void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(QPen(penColor(), 2));
-
     QPolygonF polygon;
-
+    painter->setPen(pen());
+    painter->setBrush(brush());
     polygon << QPointF(startPoint().x() + (endPoint().x() > startPoint().x() ? + 1 : - 1)*
                            abs((endPoint().x() - startPoint().x())/2), startPoint().y())
                 << QPointF((endPoint().x() > startPoint().x()) ? endPoint().x() : startPoint().x(),

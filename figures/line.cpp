@@ -9,16 +9,10 @@ Line::Line(QPointF point, QObject *parent) :
     Q_UNUSED(point)
 }
 
-Line::~Line()
-{
-
-}
-
-
-
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(QPen(penColor(), 2));
+    painter->setPen(pen());
+    painter->setBrush(brush());
     painter->drawLine(startPoint(),endPoint());
 
     Q_UNUSED(option)

@@ -10,11 +10,6 @@ PaintScene::PaintScene(QObject *parent) : QGraphicsScene(parent)
 
 }
 
-PaintScene::~PaintScene()
-{
-
-}
-
 void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
 
@@ -25,7 +20,6 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if (tempFigure != Q_NULLPTR &&  m_currentAction == Move && event->buttons() == Qt::LeftButton)
     {
         tempFigure->setPos(tempFigure->scenePos() - (event->lastScenePos() - event->scenePos()));
-        qDebug() << tempFigure->center() << event->scenePos() << event->pos();
     }
 
     this->update(QRectF(0,0,this->width(), this->height()));
@@ -72,10 +66,7 @@ void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
         m_currentAction = Paint;
         break;
     }
-    default:{
-        return;
-    }
-    }
+    };
 
     this->addItem(tempFigure);
 }

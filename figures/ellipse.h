@@ -12,9 +12,9 @@ class Ellipse : public Figure
 
 public:
     explicit Ellipse(QPointF point, QObject *parent = 0);
-    ~Ellipse();
 
 private:
+        QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 

@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->resize(800,600);
+    this->setWindowTitle("Figure Painter");
     scene = new PaintScene();
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
@@ -26,10 +27,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->currenIcon->setScaledContents(true);
     ui->currenIcon->setFixedSize(50,50);
     ui->widget_2->layout()->setAlignment(ui->currenIcon,Qt::AlignHCenter | Qt::AlignTop);
-  //   ui->widget_2->layout()->setAlignment(ui->label,Qt::AlignHCenter | Qt::AlignTop);
-    timer = new QTimer();       // Инициализируем таймер
-    connect(timer, &QTimer::timeout, this, &MainWindow::slotTimer);
-    timer->start(100);          // Запускаем таймер
+
+     ui->graphicsView->resize(645,580);
+    scene->setSceneRect(0,0, ui->graphicsView->width() - 20, ui->graphicsView->height() - 20);
+
 }
 
 MainWindow::~MainWindow()
@@ -37,19 +38,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::slotTimer()
-{
-    /* Переопределяем размеры графической сцены в зависимости
-     * от размеров окна
-     * */
-    timer->stop();
-    scene->setSceneRect(0,0, ui->graphicsView->width() - 20, ui->graphicsView->height() - 20);
-}
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    timer->start(100);
-    QMainWindow::resizeEvent(event);
+ scene->setSceneRect(0,0, ui->graphicsView->width() - 20, ui->graphicsView->height() - 20);
+  QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::changeCurrentIcon(const int icon)
@@ -57,44 +50,47 @@ void MainWindow::changeCurrentIcon(const int icon)
     ui->currenIcon->setPixmap(*m_figuresIcons[icon]);
 }
 
-// Ромб
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_rombButton_clicked()
 {
     scene->setTypeFigure(PaintScene::RombType);
     changeCurrentIcon(PaintScene::RombType);
 }
 
-// Квадрат
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_squareButton_clicked()
 {
     scene->setTypeFigure(PaintScene::SquareType);
     changeCurrentIcon(PaintScene::SquareType);
 }
 
-// Треугольник
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_triangleButton_clicked()
 {
     scene->setTypeFigure(PaintScene::TriangleType);
     changeCurrentIcon(PaintScene::TriangleType);
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_ellipseButton_clicked()
 {
     scene->setTypeFigure(PaintScene::EllipseType);
     changeCurrentIcon(PaintScene::EllipseType);
 }
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_lineButton_clicked()
 {
     scene->setTypeFigure(PaintScene::LineType);
     changeCurrentIcon(PaintScene::LineType);
 }
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_cursorButton_clicked()
 {
     scene->setTypeFigure(PaintScene::NONE);
     scene->setCurrentAction(PaintScene::Move);
     changeCurrentIcon(PaintScene::PaintScene::NONE);
 }
 
-
+void MainWindow::on_clearButton_clicked()
+{
+    scene->setTypeFigure(PaintScene::NONE);
+    scene->setCurrentAction(PaintScene::NO_ACTION);
+    changeCurrentIcon(PaintScene::PaintScene::NONE);
+    scene->clear();
+}

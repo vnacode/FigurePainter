@@ -4,52 +4,51 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QDebug>
+#include <QPen>
+#include <QBrush>
 
 class Figure : public QObject, public QGraphicsItem
 {
     Q_OBJECT
-    // Свойство стартовой точки, относительно которой отрисовываем фигуру
     Q_PROPERTY(QPointF startPoint
                READ startPoint WRITE setStartPoint
                NOTIFY pointChanged)
-    // Свойство конечно точки, до куда отрисовываем фигуру
     Q_PROPERTY(QPointF endPoint
                READ endPoint WRITE setEndPoint
                NOTIFY pointChanged)
-    Q_PROPERTY(QColor penColor
-               READ penColor WRITE setPenColor
+    Q_PROPERTY(QPen pen
+               READ pen WRITE setPen
                NOTIFY colorChanged)
-    Q_PROPERTY(QColor brushColor
-               READ brushColor WRITE setBrushColor
+    Q_PROPERTY(QBrush brush
+               READ brush WRITE setBrush
                NOTIFY colorChanged)
 public:
     explicit Figure(QPointF point, QObject *parent = 0);
-    ~Figure();
 
     QPointF startPoint() const; // Стартовая точка
     QPointF endPoint() const;   // Конечная точка
-    QColor  penColor() const;
-    QColor  brushColor() const;
+    QPen  pen() const;
+    QBrush  brush() const;
     QPointF center() const;
 
-    void setStartPoint(const QPointF point);    // Установка стартовой точки
-    void setEndPoint(const QPointF point);      // Установка конечной точки
-    void setPenColor(const QColor &color);
-    void setBrushColor(const QColor &color);
+    void setStartPoint(const QPointF point);
+    void setEndPoint(const QPointF point);
+    void setPen(const QPen &pen);
+    void setBrush(const QBrush &brush);
 
 signals:
-    void pointChanged();    // Сигнал об изменении точки
+    void pointChanged();
     void colorChanged();
 private:
     QRectF boundingRect() const;
-    QPointF m_startPoint;   // Стартовая точка
-    QPointF m_endPoint;     // Конечная точка
-       // Область, в которой содержится фигура
-    QColor m_penColor;
-    QColor m_BrushColor;
+    QPointF m_startPoint;
+    QPointF m_endPoint;
+
+    QPen m_pen;
+    QBrush m_Brush;
 
 public slots:
-    void updateRomb();     // Слот обновления области, в которой содержится фигура
+    void updateRomb();
 };
 
 

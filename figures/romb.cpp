@@ -7,18 +7,12 @@ Romb::Romb(QPointF point, QObject *parent) :
     Q_UNUSED(point)
 }
 
-Romb::~Romb()
-{
 
-}
-
-// Реализуем метод отрисовки
 void Romb::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(QPen(Qt::black, 2));
-
     QPolygonF polygon;
-
+    painter->setPen(pen());
+    painter->setBrush(brush());
     polygon << QPointF(startPoint().x() + (endPoint().x() > startPoint().x() ? + 1 : - 1)*
                            abs((endPoint().x() - startPoint().x())/2), startPoint().y())
                 << QPointF(endPoint().x(), startPoint().y() + (endPoint().y() > startPoint().y() ? + 1 : - 1)*
