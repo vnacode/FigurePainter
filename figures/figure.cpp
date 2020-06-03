@@ -14,15 +14,8 @@ Figure::Figure(QPointF point, QObject *parent) :
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsFocusable);
-  //  setFlag(QGraphicsItem::ItemSendsGeometryChanges);
-  //  setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
     setPen(QPen(QColor(0,0,230),2));
     setBrush(QBrush(Qt::transparent));
-
-    connect(this,&Figure::selectedChanged, [=](bool selection)
-    {
-       qDebug() << selection;
-    });
 }
 
 QRectF Figure::boundingRect() const
@@ -36,7 +29,6 @@ QRectF Figure::boundingRect() const
 void Figure::updateRomb()
 {
     this->update(boundingRect());
-
 }
 
 
@@ -66,9 +58,10 @@ void Figure::setBrush(const QBrush &brush)
 
 QVariant Figure::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
-    if ( change == QGraphicsItem::ItemSelectedChange ) {
+    if (change == QGraphicsItem::ItemSelectedChange) {
 
         emit selectedChanged(value.toBool());
+        setSelectionHighlight(value.toBool());
     }
     return value;
 }
@@ -84,7 +77,7 @@ QPointF Figure::endPoint() const
     return m_endPoint;
 }
 
-QPen Figure::pen() const
+QPen Figure::pen()
 {
     return  m_pen;
 }

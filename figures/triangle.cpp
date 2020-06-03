@@ -5,6 +5,12 @@ Triangle::Triangle(QPointF point, QObject *parent) :
     Figure(point,parent)
 {
     Q_UNUSED(point)
+    setTransformOriginPoint((endPoint() - startPoint()) / 2);
+}
+
+void Triangle::setSelectionHighlight(bool selected)
+{
+    setScale(selected ? 1.2 : 1.0);
 }
 
 void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

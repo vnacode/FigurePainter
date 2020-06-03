@@ -7,6 +7,11 @@ Square::Square(QPointF point, QObject *parent) :
     Q_UNUSED(point)
 }
 
+void Square::setSelectionHighlight(bool selected)
+{
+  setPen(selected ? QPen(QColor(0,0,230),4) : QPen(QColor(0,0,230),2));
+}
+
 
 void Square::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {

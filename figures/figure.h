@@ -27,7 +27,7 @@ public:
 
     QPointF startPoint() const; // Стартовая точка
     QPointF endPoint() const;   // Конечная точка
-    QPen  pen() const;
+    QPen  pen();
     QBrush  brush() const;
     QPointF center() const;
 
@@ -36,7 +36,6 @@ public:
     void setPen(const QPen &pen);
     void setBrush(const QBrush &brush);
     void setSelected();
-    virtual QVariant itemChange(GraphicsItemChange change, const QVariant &value);
    // virtual void highlight();
 signals:
     void pointChanged();
@@ -45,8 +44,9 @@ signals:
 
 protected:
     virtual QRectF boundingRect() const;
-
+    virtual void setSelectionHighlight(bool selected) {}
 private:
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     QPointF m_startPoint;
     QPointF m_endPoint;
 

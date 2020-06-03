@@ -12,7 +12,8 @@ class Square : public Figure
 public:
     explicit Square(QPointF point, QObject *parent = 0);
 private:
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void setSelectionHighlight(bool selected) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 };
 
 #endif // SQUARE_H

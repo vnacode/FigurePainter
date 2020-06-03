@@ -23,13 +23,12 @@ public:
     inline int typeFigure() const {return  m_typeFigure;}                  // Возвращение текщего типа
     inline void setTypeFigure(const int type) { m_typeFigure = type; m_currentAction = NO_ACTION; }     // Установка текущего типа
     inline int currentAction() const {return  m_currentAction;}
-    inline void setCurrentAction(const int action) {m_currentAction = action;}
+    inline void setCurrentAction(const int action) {m_currentAction = action; emit currentActionChanged(m_currentAction); }
     // Перечисление типов используемых фигур
 
     enum Actions{
         NO_ACTION,
         Paint,
-        Move
     };
 
     enum FigureTypes {
@@ -43,7 +42,7 @@ public:
 
 signals:
     void typeFigureChanged();
-    void currentActionChanged();
+    void currentActionChanged(const int action);
 
 private:
 
