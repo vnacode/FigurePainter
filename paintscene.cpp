@@ -8,7 +8,8 @@
 PaintScene::PaintScene(QObject *parent)
     : QGraphicsScene(parent),
       m_typeFigure(NONE),
-      m_currentAction(NO_ACTION)
+      m_currentAction(NO_ACTION),
+      m_currentId(1)
 {
 
 }
@@ -38,22 +39,27 @@ void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
 
     case SquareType: {
         tempFigure = new Square(event->scenePos());
+        m_currenFigureName = "Square";
         break;
     }
     case RombType: {
         tempFigure = new Romb(event->scenePos());
+        m_currenFigureName = "Square";
         break;
     }
     case TriangleType: {
-       tempFigure = new Triangle(event->scenePos());
+        tempFigure = new Triangle(event->scenePos());
+        m_currenFigureName = "Triangle";
         break;
     }
     case EllipseType: {
         tempFigure = new Ellipse(event->scenePos());
+        m_currenFigureName = "Ellipse";
         break;
     }
     case LineType: {
         tempFigure = new Line(event->scenePos());
+        m_currenFigureName = "Line";
         break;
     }
     };
@@ -61,6 +67,8 @@ void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
     tempFigure->setPos(event->pos());
     setCurrentAction(Paint);
     this->addItem(tempFigure);
+    emit newFigureAdded(m_currentId, m_currenFigureName);
+    m_currentId++;
 }
 
 

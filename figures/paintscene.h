@@ -43,7 +43,7 @@ public:
 signals:
     void typeFigureChanged();
     void currentActionChanged(const int action);
-
+    void newFigureAdded(const int id, const QString &name);
 private:
 
     Figure *tempFigure;
@@ -52,6 +52,8 @@ private:
 
 private:
     // Для рисования используем события мыши
+    int m_currentId;
+    QString m_currenFigureName;
     void mousePressEvent(QGraphicsSceneMouseEvent * event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void drawFigure(QGraphicsSceneMouseEvent *event);

@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-
-
-
+#include <model.h>
 
 
 
@@ -16,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("Figure Painter");
 
     scene = new PaintScene(this);
+    model *m_model = new model();
+    connect(scene, &PaintScene::newFigureAdded, m_model, &model::addObject);
+    ui->listView->setModel(m_model);
     ui->graphicsView->setScene(scene);
      ui->graphicsView->setRenderHint(QPainter::Antialiasing);
      ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
