@@ -2,12 +2,8 @@
 #define MODEL_H
 
 #include <QAbstractListModel>
-
-struct Object {
-    int id;
-    QString name;
-};
-
+#include <figure.h>
+#include <QItemSelection>
 
 class model : public QAbstractListModel
 {
@@ -15,19 +11,18 @@ class model : public QAbstractListModel
 
 public:
     explicit model(QObject *parent = nullptr);
-
-    // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     // Remove data:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-
-    Q_SLOT void addObject(const int id, const QString &name);
+    void clearAll();
+    void clearSelected();
+    QModelIndex getItemIndex(QGraphicsItem *item);
+    Q_SLOT void addFigure(Figure *figure);
+    Q_SLOT void changeSelection(const QItemSelection &selected, const QItemSelection &deselected);
 private:
-    QList<Object> m_objects;
-    QHash<int, QByteArray> roleNames() const;
+    QList<Figure*> m_objects;
 };
 
 #endif // MODEL_H

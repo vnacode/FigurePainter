@@ -20,7 +20,7 @@ QRectF Ellipse::boundingRect() const
 
 void Ellipse::setSelectionHighlight(bool selected)
 {
-    setPen(selected ? QPen(QColor(0,180,50),2) : QPen(QColor(0,0,230),2));
+    setPen(selected ? QPen(QColor(0,180,50),2) : getDefaultPen());
 }
 
 void Ellipse::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

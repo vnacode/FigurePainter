@@ -24,9 +24,9 @@ HEADERS  += mainwindow.h \
     figures/triangle.h \
     figures/square.h \
     figures/romb.h \
-    figures/paintscene.h \
     figures/figure.h \
     figures/line.h \
+    paintscene.h \
     model.h
 
 FORMS    += mainwindow.ui

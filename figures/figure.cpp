@@ -14,7 +14,7 @@ Figure::Figure(QPointF point, QObject *parent) :
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsFocusable);
-    setPen(QPen(QColor(0,0,230),2));
+    setPen(getDefaultPen());
     setBrush(QBrush(Qt::transparent));
 }
 
@@ -24,6 +24,11 @@ QRectF Figure::boundingRect() const
                   (endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y()) - 5,
                   qAbs(endPoint().x() - startPoint().x()) + 10,
                   qAbs(endPoint().y() - startPoint().y()) + 10);
+}
+
+void Figure::setSelectionHighlight(bool selected)
+{
+    setPen(selected ? QPen(QColor(0,0,0),4,Qt::DashLine) : getDefaultPen());
 }
 
 void Figure::updateRomb()

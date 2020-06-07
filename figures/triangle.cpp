@@ -26,7 +26,8 @@ void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
                            endPoint().y());
 
     painter->drawPolygon(polygon);
-
+    setTransformOriginPoint(QPointF(startPoint().x() + (endPoint().x() > startPoint().x() ? + 1 : - 1)*abs((endPoint().x() - startPoint().x())/2),
+                                    startPoint().y() + (endPoint().y() > startPoint().y() ? + 1 : - 1)*abs((endPoint().y() - startPoint().y())/2)));
     Q_UNUSED(option)
     Q_UNUSED(widget)
 }

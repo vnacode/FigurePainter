@@ -6,6 +6,7 @@
 #include <QResizeEvent>
 
 #include "paintscene.h"
+#include <model.h>
 
 namespace Ui {
 class MainWindow;
@@ -31,8 +32,7 @@ private:
     void resizeEvent(QResizeEvent * event);
 
     QMap<int,QPixmap*> m_figuresIcons;
-    void changeCurrentIcon(const int icon);
-
+    model *m_model;
 private slots:
 
     void on_rombButton_clicked();
@@ -42,6 +42,7 @@ private slots:
     void on_lineButton_clicked();
     void on_cursorButton_clicked();
     void on_clearButton_clicked();
+    void on_deleteButton_clicked();
 };
 
 #endif // MAINWINDOW_H

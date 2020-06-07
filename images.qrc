@@ -6,5 +6,6 @@
         <file>images/minus.png</file>
         <file>images/triangle.png</file>
         <file>images/romb.png</file>
+        <file>images/trash.png</file>
     </qresource>
 </RCC>
