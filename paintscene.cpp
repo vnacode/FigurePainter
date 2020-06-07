@@ -17,7 +17,6 @@ PaintScene::PaintScene(QObject *parent)
 
 void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-
     if (m_currentAction == Paint)
     {
         tempFigure->setEndPoint(event->scenePos());
@@ -27,7 +26,7 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QGraphicsScene::mouseMoveEvent(event);
     }
 
-    this->update(QRectF(0,0,this->width(), this->height()));
+    this->update();
 }
 
 void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
@@ -76,7 +75,6 @@ void PaintScene::drawFigure(QGraphicsSceneMouseEvent *event)
 void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mousePressEvent(event);
-
     if (m_currentAction == Paint)
     {
         m_currentAction = NO_ACTION;

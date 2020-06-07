@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     /// need to correct glitch while paint figure
-
     connect(scene, &PaintScene::selectionChanged, [=]()
     {
         for (auto *si : scene->items())
@@ -40,17 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->graphicsView->setDragMode(state == PaintScene::Paint ? QGraphicsView::NoDrag : QGraphicsView::RubberBandDrag);
     });
-
-
-    m_figuresIcons[PaintScene::NONE] = new QPixmap(":/images/cursor.png");
-    m_figuresIcons[PaintScene::SquareType] = new QPixmap(":/images/rectangle.png");
-    m_figuresIcons[PaintScene::RombType] = new QPixmap(":/images/romb.png");
-    m_figuresIcons[PaintScene::TriangleType] = new QPixmap(":/images/triangle.png");
-    m_figuresIcons[PaintScene::EllipseType] = new QPixmap(":/images/ellipse.png");
-    m_figuresIcons[PaintScene::LineType] = new QPixmap(":/images/minus.png");
-
-    scene->setSceneRect(0,0, ui->graphicsView->width() - 20, ui->graphicsView->height() - 20);
-
 }
 
 MainWindow::~MainWindow()
@@ -101,7 +89,6 @@ void MainWindow::on_clearButton_clicked()
     scene->setTypeFigure(PaintScene::NONE);
     scene->setCurrentAction(PaintScene::NO_ACTION);
     m_model->clearAll();
-    //  scene->clear();
 }
 
 void MainWindow::on_deleteButton_clicked()

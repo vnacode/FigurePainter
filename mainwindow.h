@@ -30,8 +30,6 @@ private:
 private:
 
     void resizeEvent(QResizeEvent * event);
-
-    QMap<int,QPixmap*> m_figuresIcons;
     model *m_model;
 private slots:
 
